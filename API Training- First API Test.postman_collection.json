@@ -1,6 +1,6 @@
 {
 	"info": {
-		"_postman_id": "9189d3f5-b04a-4037-8d98-84744d662561",
+		"_postman_id": "be846ea4-5fa1-42b9-a73e-ddf3d0a126f7",
 		"name": "API Training: First API Test",
 		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
 		"_exporter_id": "7938776"
@@ -32,7 +32,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n   \"clientName\": \"Oluwafunmike\",\n   \"clientEmail\": \"funmike@mailinator.com\"\n}",
+							"raw": "{\n   \"clientName\": \"Asake\",\n   \"clientEmail\": \"funmike@gmail.com\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -110,13 +110,49 @@
 							"listen": "test",
 							"script": {
 								"exec": [
+									"pm.test(\"Confirm that book id is Available\", function () {\r",
+									"        pm.response.to.have.status(200);\r",
+									"    });\r",
+									"\r",
+									"        pm.test(\"Book Available in stock with OK\", function () {\r",
+									"        pm.response.to.have.status(\"OK\");\r",
+									"    });\r",
+									"\r",
+									"var jsonData = pm.response.json();\r",
+									"console.log(jsonData)\r",
+									"console.log(jsonData.id)\r",
+									"console.log(jsonData.status)\r",
+									"console.log(jsonData.name);\r",
+									"console.log(jsonData.author);\r",
+									"\r",
+									"\r",
+									"pm.test(\"Book Id is 1\", function () {\r",
+									"    pm.expect(jsonData.id).to.eql(1);\r",
+									"});\r",
+									"\r",
+									"\r",
+									"pm.test(\"Confirm Author is The Russian\", function () {\r",
+									"    pm.expect(pm.response.text(\"The Russian\")).to.include(\"The Russian\");\r",
+									"})\r",
+									"\r",
+									"pm.test(\"Confirm Book name The Russian\", function () {\r",
+									"    pm.expect(pm.response.text(\"The Russian\")).to.include(\"The Russian\");\r",
+									"})\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
+									"\r",
 									"pm.test(\"my enviroment variable successful \", function () {\r",
 									"    pm.response.to.have.status(200);\r",
 									"});\r",
 									"\r",
 									"const response = pm.response.json();\r",
-									"console.log(response.id[6]);\r",
-									"pm.environment.set(\"myGlobID\",response.id[6]);\r",
+									"console.log(response.id[1]);\r",
+									"pm.environment.set(\"myGlobID\",response.id[1]);\r",
 									"\r",
 									"\r",
 									"\r",
@@ -158,7 +194,7 @@
 							"variable": [
 								{
 									"key": "bookId",
-									"value": "1"
+									"value": "{{myGlobID}}"
 								}
 							]
 						}
@@ -248,7 +284,7 @@
 									"const OrderId = pm.response.json();\r",
 									"\r",
 									"console.log(OrderId.orderId);\r",
-									"pm.globals.set(\"OrderId\", OrderId.orderId);\r",
+									"pm.environment.set(\"OrderId\", OrderId.orderId);\r",
 									""
 								],
 								"type": "text/javascript"
@@ -261,7 +297,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "af88e1420a2571f96129c0d1d566d7c11fa12d6916b5cb9f756676456a255184",
+									"value": "b48548d3d676a2dc7c0e2ed63f39e1f665a624c5fda361836d145f7bccfb4f71",
 									"type": "string"
 								}
 							]
@@ -475,7 +511,7 @@
 							"bearer": [
 								{
 									"key": "token",
-									"value": "4392efb156a4c77b2fff294e539342e83e1221799a94f2d7ad9ec70fc8b449e",
+									"value": "b48548d3d676a2dc7c0e2ed63f39e1f665a624c5fda361836d145f7bccfb4f71",
 									"type": "string"
 								}
 							]
@@ -865,7 +901,6 @@
 				{
 					"listen": "test",
 					"script": {
-						"type": "text/javascript",
 						"exec": [
 							"pm.test(\"Status code is 200\", function () {\r",
 							"    pm.response.to.have.status(200);\r",
@@ -884,7 +919,8 @@
 							"    pm.expect(response.message).to.eql(\"Welcome to the Simple Books API.\")\r",
 							"});\r",
 							""
-						]
+						],
+						"type": "text/javascript"
 					}
 				}
 			],
@@ -892,12 +928,9 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "https://simple-books-api.glitch.me/",
-					"protocol": "https",
+					"raw": "{{baseURL}}/",
 					"host": [
-						"simple-books-api",
-						"glitch",
-						"me"
+						"{{baseURL}}"
 					],
 					"path": [
 						""
@@ -976,6 +1009,16 @@
 				}
 			],
 			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "b48548d3d676a2dc7c0e2ed63f39e1f665a624c5fda361836d145f7bccfb4f71",
+							"type": "string"
+						}
+					]
+				},
 				"method": "GET",
 				"header": [],
 				"url": {
