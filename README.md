@@ -1,2 +1,1 @@
-# teamgithub_oluwafunmike_task_abme
-My first Github post
+# Project Submitted for my 3 Months project in Testify Academy#
